@@ -58,9 +58,11 @@ export function Trayectoria() {
             key={i}
             className={`figure${f.big ? ' figure--big' : ''}`}
           >
-            <Counter target={f.target} pad={f.pad} />
-            {f.plus && <span className="figure__plus">+</span>}
-            {f.unit && <span className="figure__unit">{f.unit}</span>}
+            <span className="figure__num-row">
+              <Counter target={f.target} pad={f.pad} />
+              {f.unit && <span className="figure__unit">{f.unit}</span>}
+              {f.plus && <span className="figure__plus">+</span>}
+            </span>
             <span className="figure__label mono">{f.label}</span>
           </Reveal>
         ))}
