@@ -812,26 +812,25 @@ a.contact__card:hover .contact__arrow{
 
 /* Tipo de obra — selector con iconos compactos */
 .tipo-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit, minmax(98px, 1fr));
+  display:flex;
+  flex-wrap:wrap;
   gap:6px;
   margin-top:2px;
 }
 .tipo{
   position:relative;
-  display:grid;
-  grid-template-columns:auto 1fr;
+  display:inline-flex;
   align-items:center;
   gap:8px;
-  padding:8px 10px;
+  padding:8px 24px 8px 10px;
   background:var(--bg-2);
   border:1px solid var(--line);
   border-radius:var(--radius);
   cursor:pointer;
   text-align:left;
+  white-space:nowrap;
   transition:border-color .2s var(--bezier), background .2s var(--bezier);
   color:var(--ink);
-  min-height:44px;
 }
 .tipo:hover{
   border-color:var(--ink-dim);
@@ -853,7 +852,8 @@ a.contact__card:hover .contact__arrow{
 }
 .tipo__check{
   position:absolute;
-  top:6px; right:6px;
+  top:50%; right:8px;
+  transform:translateY(-50%);
   display:grid; place-items:center;
   width:12px; height:12px;
   border-radius:50%;
