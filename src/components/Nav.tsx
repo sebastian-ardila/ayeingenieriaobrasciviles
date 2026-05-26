@@ -21,14 +21,23 @@ export function Nav() {
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
 
+  /**
+   * El header NO usa <motion> directamente porque framer-motion
+   * deja un transform residual que convierte al header en el bloque
+   * contenedor de cualquier descendiente position:fixed (rompiendo
+   * el CTA pegado al bottom del menú móvil). El animado va en una
+   * capa interna inocua.
+   */
   return (
-    <motion.header
-      className={`nav${stuck ? ' is-stuck' : ''}${open ? ' is-open' : ''}`}
-      initial={{ y: -40, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.7, delay: 1.4, ease: [0.2, 0.8, 0.2, 1] }}
-    >
-      <a className="nav__brand" href="#top" aria-label="A&E Ingeniería Obras Civiles">
+    <header className={`nav${stuck ? ' is-stuck' : ''}${open ? ' is-open' : ''}`}>
+      <motion.a
+        className="nav__brand"
+        href="#top"
+        aria-label="A&E Ingeniería Obras Civiles"
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: 1.4, ease: [0.2, 0.8, 0.2, 1] }}
+      >
         <span className="nav__brand-plate" aria-hidden="true">
           <img src={asset('aye0.webp')} alt="" width={54} height={54} />
         </span>
@@ -36,7 +45,7 @@ export function Nav() {
           <span className="nav__brand-name">A<em>&amp;</em>E</span>
           <span className="nav__brand-sub">Ingeniería · Obras Civiles</span>
         </span>
-      </a>
+      </motion.a>
 
       <nav className="nav__menu" aria-label="Principal">
         {links.map((l) => (
@@ -62,6 +71,6 @@ export function Nav() {
       >
         <span /><span /><span />
       </button>
-    </motion.header>
+    </header>
   );
 }
