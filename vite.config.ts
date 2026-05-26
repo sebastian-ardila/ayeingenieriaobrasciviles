@@ -12,7 +12,8 @@ import react from '@vitejs/plugin-react';
  * Localmente, `npm run dev` usa "/".
  */
 export default defineConfig(({ mode }) => {
-  const env = loadEnv(mode, process.cwd(), '');
+  // loadEnv lee desde el cwd por defecto cuando se pasa '.'
+  const env = loadEnv(mode, '.', '');
   const base = env.VITE_BASE_PATH || '/';
 
   return {
